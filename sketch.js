@@ -68,19 +68,27 @@ function draw() {
     // pop();
 
     if (moveLeft === true) {
-        moveRight = false;
-        player.distance += 10
-        player.update();
+        moveLeftSide();
     }
     if (moveRight === true) {
-        moveLeft = false;
-        player.distance -= 10
-        player.update();
+        moveRightSide
     }
 
     if (firebase === undefined) {
         alert("Seems like your internet speed is not quite good");
     }
+}
+
+function moveLeftSide(){
+    moveRight = false;
+    player.distance += 10
+    player.update();
+}
+
+function moveRightSide(){
+    moveLeft = false;
+    player.distance -= 10
+    player.update();
 }
 
 function mouseReleased() {

@@ -101,8 +101,6 @@ class Game {
                 }
                 if (keyIsDown(LEFT_ARROW) && player.index !== null) {
                     moveLeft = true;
-                    player.distance += 10
-                    player.update();
                 }
             }
         }
