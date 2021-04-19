@@ -15,7 +15,9 @@ var edges;
 
 var edgeLeft, edgeRight, edgeDown;
 
-var x, centerOfStick;
+var x, buttons;
+
+var moveLeft, moveRight;
 
 function preload() {
     back_img = loadImage("images/jungle.jpg");
@@ -33,14 +35,16 @@ function setup() {
     game = new Game();
     game.getState();
     game.start();
+    buttons = [];
 
     edgeLeft = createSprite(1025, canvas.height / 2, 50, canvas.height);
     edgeRight = createSprite(-25, canvas.height / 2, 50, canvas.height);
     edgeDown = createSprite(canvas.width / 2, 700, canvas.width, 50);
 
     edges = [edgeLeft, edgeRight, edgeDown];
-    x = 780;
-    centerOfStick = x;
+    x1 = 730;
+    x2 = 840;
+    game.createPlayButtons();
 }
 
 function draw() {
@@ -56,22 +60,30 @@ function draw() {
     if (gameState === 2) {
         game.end();
     }
-    push();
-    fill("blue");
-    ellipse(centerOfStick, 500, 110);
-    fill("darkblue");
-    ellipse(x, 500, 60);
-    pop();
+    // push();
+    // fill("blue");
+    // ellipse(x1, 500, 80);
+    // fill("darkblue");
+    // ellipse(x2, 500, 80);
+    // pop();
+
+    if (moveLeft === true) {
+        moveRight = false;
+        player.distance += 10
+        player.update();
+    }
+    if (moveRight === true) {
+        moveLeft = false;
+        player.distance -= 10
+        player.update();
+    }
 
     if (firebase === undefined) {
         alert("Seems like your internet speed is not quite good");
     }
 }
 
-function mouseDragged() {
-    game.useJoystickDrag();
-}
-
 function mouseReleased() {
-    x = centerOfStick;
+    moveLeft = false;
+    moveRight = false;
 }

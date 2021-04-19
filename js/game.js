@@ -41,6 +41,10 @@ class Game {
     play() {
         form.hide();
         Player.getPlayerInfo();
+        for (var m in buttons) {
+            var button = buttons[m];
+            button.show();
+        }
 
         // Create Fruits
         ////////////////////////////////////////////////////////////////////////
@@ -93,30 +97,62 @@ class Game {
             var playerObj = players[k];
             if (!(playerObj.isTouching(edges[0])) && !(playerObj.isTouching(edges[1]))) {
                 if (keyIsDown(RIGHT_ARROW) && player.index !== null) {
-                    player.distance -= 10
-                    player.update();
+                    moveRight = true;
                 }
                 if (keyIsDown(LEFT_ARROW) && player.index !== null) {
+                    moveLeft = true;
                     player.distance += 10
                     player.update();
                 }
             }
         }
     }
-    useJoystickDrag() {
-        var distance = dist(mouseX, mouseY, (centerOfStick + (150 / 2)), (500 + (150 / 2)));
-        console.log(distance);
-        if (distance < 400) {
-            if (mouseX < centerOfStick) {
-                x = centerOfStick - distance;
-                player.distance += 10
-                player.update();
-            }
-            if (mouseX > centerOfStick) {
-                x = centerOfStick + distance;
-                player.distance -= 10
-                player.update();
-            }
-        }
+    // useJoystickDrag() {
+    //     var distance = dist(mouseX, mouseY, (centerOfStick + (150 / 2)), (500 + (150 / 2)));
+    //     console.log(distance);
+    //     if (distance < 400) {
+    //         if (mouseX < centerOfStick) {
+    //             x = centerOfStick - distance;
+    //             player.distance += 10
+    //             player.update();
+    //         }
+    //         if (mouseX > centerOfStick) {
+    //             x = centerOfStick + distance;
+    //             player.distance -= 10
+    //             player.update();
+    //         }
+    //     }
+    // }
+    createPlayButtons() {
+        buttons.push(createButton("Left").style("background-color", "blue").style("border", "none").style("color", "white").style("padding", "20px").style("text-align", "center").style("text-decoration", "none").style("display", "inline-block").style("font-size", "16px").style("border-radius", "90%").position(x1, 500).mousePressed(() => {
+            moveLeft = true;
+        }).hide());
+
+        buttons.push(createButton("Right").style("background-color", "blue").style("border", "none").style("color", "white").style("padding", "20px").style("text-align", "center").style("text-decoration", "none").style("display", "inline-block").style("font-size", "16px").style("border-radius", "90%").position(x2, 500).mousePressed(() => {
+            moveRight = true;
+        }).hide());
+
+        // if (this.mousePressedOnEllipse(x1, 500, 100)) {
+        //     var distance = this.getDistanceFromButton(x1, 500);
+        //     x = x1 - distance;
+        //     player.distance += 10
+        //     player.update();
+        //     // console.log("Have to move left");
+        // }
+        // if (this.mousePressedOnEllipse(x2, 500, 100)) {
+        //     var distance = this.getDistanceFromButton(x2, 500);
+        //     x = x2 + distance;
+        //     player.distance -= 10
+        //     player.update();
+        //     // console.log("Have to move right");
+        // }
     }
+    // mousePressedOnEllipse(x, y, maxVal) {
+    //     var distance = this.getDistanceFromButton(x,y);
+    //     return (distance <= maxVal, distance);
+    // }
+    // getDistanceFromButton(x, y) {
+    //     var distance = dist(mouseX, mouseY, x, y);
+    //     return (distance);
+    // }
 }
