@@ -6,12 +6,6 @@ class Form {
         this.title = createElement("h2");
         this.reset = createButton("Reset");
     }
-    hide() {
-        this.greeting.hide();
-        this.button.hide();
-        this.input.hide();
-        this.title.hide();
-    }
     display() {
         this.title.html("FRUIT CATCHER");
         this.title.position(250, 50);

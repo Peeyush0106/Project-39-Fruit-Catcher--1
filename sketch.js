@@ -1,3 +1,11 @@
+/*                                              
+                                                        |   |
+                                                        |---| |--| | |  __
+                                                        |   | |--| | | |  |
+                                                        |   | |___ | | |__|
+*/
+
+// Initial Variable Declaration
 var database;
 var back_img;
 var gameState = 0;
@@ -19,6 +27,7 @@ var x, buttons;
 
 var moveLeft, moveRight;
 
+// Preload of Images in the program
 function preload() {
     back_img = loadImage("images/jungle.jpg");
     player_img = loadImage("images/basket2.png");
@@ -29,27 +38,36 @@ function preload() {
     fruit5_img = loadImage("images/pineapple2.png");
 }
 
+// Initial setup of the game
 function setup() {
     createCanvas(1000, 600);
+    
+    // Game Essential Database Setup
     database = firebase.database();
     game = new Game();
     game.getState();
     game.start();
     buttons = [];
 
+    // Edges
     edgeLeft = createSprite(1025, canvas.height / 2, 50, canvas.height);
     edgeRight = createSprite(-25, canvas.height / 2, 50, canvas.height);
     edgeDown = createSprite(canvas.width / 2, 700, canvas.width, 50);
 
     edges = [edgeLeft, edgeRight, edgeDown];
+
+    // Game External Variables
     x1 = 730;
     x2 = 840;
     game.createPlayButtons();
 }
 
+// Continuous game script run
 function draw() {
+    // Background
     background(back_img);
 
+    // Setting Game Types
     if (playerCount === 2) {
         game.update(1);
     }
@@ -60,38 +78,46 @@ function draw() {
     if (gameState === 2) {
         game.end();
     }
-    // push();
-    // fill("blue");
-    // ellipse(x1, 500, 80);
-    // fill("darkblue");
-    // ellipse(x2, 500, 80);
-    // pop();
 
+    // Moving of Baskets
     if (moveLeft === true) {
         moveLeftSide();
     }
+    if (keyWentUp(LEFT_ARROW)) {
+        moveLeft = false;
+    }
     if (moveRight === true) {
-        moveRightSide
+        moveRightSide();
+    }
+    if (keyWentUp(RIGHT_ARROW)) {
+        moveRight = false;
     }
 
+    // Internet speed is low.
     if (firebase === undefined) {
         alert("Seems like your internet speed is not quite good");
     }
 }
 
-function moveLeftSide(){
+// Move baskets
+//Left
+function moveLeftSide() {
+    console.log("Move Left");
     moveRight = false;
     player.distance += 10
     player.update();
 }
-
-function moveRightSide(){
+//Right
+function moveRightSide() {
+    console.log("Move Right");
     moveLeft = false;
     player.distance -= 10
     player.update();
 }
 
+// When the buttons were released.
 function mouseReleased() {
+    console.log("Move Off");
     moveLeft = false;
     moveRight = false;
 }
