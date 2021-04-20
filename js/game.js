@@ -55,9 +55,9 @@ class Game {
 
         //Get player information
         Player.getPlayerInfo();
-		
-		// Show the background as it clears with the clear() function
-		image(back_img, 0, 0, 1000, 800);
+
+        // Show the background as it clears with the clear() function
+        image(back_img, 0, 0, 1000, 800);
 
         // SHow play buttons
         for (var m in buttons) {
@@ -123,38 +123,38 @@ class Game {
             }
         }
     }
-	createPlayButtons(){
-		function isTouchDevice(){
-			return typeof window.ontouchstart !== 'undefined';
-		}
-		if (isTouchDevice() === true) {
-			this.createTouchPlayButtons();
-		}
-		else {
-			this.createNonTouchPlayButtons();
-		}
-	}
-	// Also check style.css for knowing the styles added to these buttons
-    createNonTouchPlayButtons() {
-			buttons.push(createButton("Left").attribute("class", "buttonsClass").position(x1, 500).mousePressed(() => {
-				moveLeft = true;
-			}).hide());
-
-			buttons.push(createButton("Right").attribute("class", "buttonsClass").position(x2, 500).mousePressed(() => {
-				moveRight = true;
-			}).hide());
+    createPlayButtons() {
+        function isTouchDevice() {
+            return typeof window.ontouchstart !== 'undefined';
+        }
+        if (isTouchDevice() === true) {
+            this.createTouchPlayButtons();
+        }
+        else {
+            this.createNonTouchPlayButtons();
+        }
     }
-	createTouchPlayButtons() {
-		var button1 = createButton("Left").attribute("class", "touchScreenButtons").position(x1, 500).mousePressed(() => {
-			moveLeft = true;
-			button1.style("background-color", "green");
-		}).hide()
-		buttons.push(button1);
-		
-		var button2 = createButton("Right").attribute("class", "touchScreenButtons").position(x2, 500).mousePressed(() => {
-			moveRight = true;
-			button2.style("background-color", "green");
-		}).hide()
-		buttons.push(button2);
+    // Also check style.css for knowing the styles added to these buttons
+    createNonTouchPlayButtons() {
+        buttons.push(createButton("Left").attribute("class", "buttonsClass").position(x1, 500).mousePressed(() => {
+            moveLeft = true;
+        }).hide());
+
+        buttons.push(createButton("Right").attribute("class", "buttonsClass").position(x2, 500).mousePressed(() => {
+            moveRight = true;
+        }).hide());
+    }
+    createTouchPlayButtons() {
+        var button1 = createButton("Left").style("background-color", "blue").style("width", "85px").style("height", "50px").style("font-size", "22px").style("color", "white").position(x1, 500).mousePressed(() => {
+            moveLeft = true;
+            button1.style("background-color", "green");
+        }).hide()
+        buttons.push(button1);
+
+        var button2 = createButton("Right").style("background-color", "blue").style("width", "85px").style("height", "50px").style("font-size", "22px").style("color", "white").position(x2, 500).mousePressed(() => {
+            moveRight = true;
+            button2.style("background-color", "green");
+        }).hide()
+        buttons.push(button2);
     }
 }
