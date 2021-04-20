@@ -102,14 +102,14 @@ function draw() {
 }
 
 // Move baskets
-//Left
+// Left
 function moveLeftSide() {
     console.log("Move Left");
     moveRight = false;
     player.distance += 10
     player.update();
 }
-//Right
+// Right
 function moveRightSide() {
     console.log("Move Right");
     moveLeft = false;

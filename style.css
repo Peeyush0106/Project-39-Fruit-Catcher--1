@@ -37,11 +37,11 @@ canvas {
   transform: translateY(4px);
 }
 
-/*.touchScreenButtons{
+.touchScreenButtons{
 	background-color:blue;
 	width:85px;
 	width:85px;
 	height: 50px;
 	font-size: 22px;
 	color: white;
-}*/
+}
