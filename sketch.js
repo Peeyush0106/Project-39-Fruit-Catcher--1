@@ -64,37 +64,39 @@ function setup() {
 
 // Continuous game script run
 function draw() {
-    // Background
-    background(back_img);
+    // Internet speed is enough for database loads
+    if (firebase !== undefined && database !== undefined) {
+        // Background
+        background(back_img);
 
-    // Setting Game Types
-    if (playerCount === 2) {
-        game.update(1);
-    }
-    if (gameState === 1) {
-        clear();
-        game.play();
-    }
-    if (gameState === 2) {
-        game.end();
-    }
+        // Setting Game Types
+        if (playerCount === 2) {
+            game.update(1);
+        }
+        if (gameState === 1) {
+            clear();
+            game.play();
+        }
+        if (gameState === 2) {
+            game.end();
+        }
 
-    // Moving of Baskets
-    if (moveLeft === true) {
-        moveLeftSide();
+        // Moving of Baskets
+        if (moveLeft === true) {
+            moveLeftSide();
+        }
+        if (keyWentUp(LEFT_ARROW)) {
+            moveLeft = false;
+        }
+        if (moveRight === true) {
+            moveRightSide();
+        }
+        if (keyWentUp(RIGHT_ARROW)) {
+            moveRight = false;
+        }
     }
-    if (keyWentUp(LEFT_ARROW)) {
-        moveLeft = false;
-    }
-    if (moveRight === true) {
-        moveRightSide();
-    }
-    if (keyWentUp(RIGHT_ARROW)) {
-        moveRight = false;
-    }
-
     // Internet speed is low.
-    if (firebase === undefined) {
+    if (firebase === undefined || database === undefined) {
         alert("Seems like your internet speed is not quite good");
     }
 }
