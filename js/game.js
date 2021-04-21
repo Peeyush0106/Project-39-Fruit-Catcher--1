@@ -145,16 +145,34 @@ class Game {
         }).hide());
     }
     createTouchPlayButtons() {
-        var button1 = createButton("Left").style("background-color", "blue").style("width", "85px").style("height", "50px").style("font-size", "22px").style("color", "white").position(x1, 500).mousePressed(() => {
+        button1 = createButton("Left");
+        button2 = createButton("Right");
+
+        button1.position(x1, 500);
+        button1.style("background-color", "blue");
+        button1.style("width", "85px");
+        button1.style("height", "50px");
+        button1.style("font-size", "22px");
+        button1.style("color", "white");
+        button1.mousePressed(() => {
             moveLeft = true;
             button1.style("background-color", "green");
-        }).hide()
+        });
+        button1.hide();
         buttons.push(button1);
+        
 
-        var button2 = createButton("Right").style("background-color", "blue").style("width", "85px").style("height", "50px").style("font-size", "22px").style("color", "white").position(x2, 500).mousePressed(() => {
+        button2.position(x2, 500);
+        button2.style("background-color", "blue");
+        button2.style("width", "85px");
+        button2.style("height", "50px");
+        button2.style("font-size", "22px");
+        button2.style("color", "white");
+        button2.mousePressed(() => {
             moveRight = true;
             button2.style("background-color", "green");
-        }).hide()
+        });
+        button2.hide()
         buttons.push(button2);
     }
 }
